@@ -8,7 +8,8 @@ run
 next
 step
 backtrace
-break 31 if letter=='0'
+break 31 if letter == '0'
+continue
 print letter
 print is_in_range
 print lower
