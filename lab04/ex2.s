@@ -32,26 +32,29 @@ main:
 #     where ^ is the exponent operator, not XOR
 ex2:
     # Note: Add code BELOW without altering existing lines.
+    addi sp sp -8
     sw s0 0(sp)
+    sw ra 4(sp)
 
     # return 1 if a1 == 0
     beq a1 x0 ex2_zero_case
 
     # otherwise, return ex2(a0, a1-1) * a0
     mv s0 a0      # save a0 in s0
+    
     addi a1 a1 -1 # decrement a1
-
+    
     jal ra ex2    # call ex2(a0, a1-1)
 
     mul a0 a0 s0  # multiply ex2(a0, a1-1) by s0
                   # (which contains the value of a0)
-
+    lw ra 4(sp)
+    lw s0 0(sp)
+    addi sp sp 8
     j ex2_end
 
 ex2_zero_case:
     li a0 1
 
 ex2_end:
-    lw s0 0(sp)
-
     jr ra
