@@ -54,7 +54,12 @@ ex2:
     j ex2_end
 
 ex2_zero_case:
-    li a0 1
+    li a0, 1
+    lw ra, 4(sp)
+    lw s0, 0(sp)
+    addi sp, sp, 8
+    jr ra
+
 
 ex2_end:
     jr ra
